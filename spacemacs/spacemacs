@@ -37,6 +37,7 @@ values."
       html
       python
       django
+      spotify
       helm
       (auto-completion :variables
                        auto-completion-return-key-behavior nil
@@ -47,7 +48,8 @@ values."
       git
       markdown
       org
-      spotify
+      (restclient :variables
+                  restclient-use-org t)
       (shell :variables
              shell-default-height 30
              shell-default-position 'bottom)
@@ -57,10 +59,8 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     helm
      ;; auto-completion
      ;; better-defaults
-     emacs-lisp
      ;; git
      ;; markdown
      ;; org
@@ -104,7 +104,7 @@ values."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-mode-line-theme 'all-the-icons'
+   dotspacemacs-mode-line-theme 'all-the-icons
    dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 5
@@ -288,7 +288,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers 'relative
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
