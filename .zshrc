@@ -107,3 +107,7 @@ export export CPPFLAGS="-I/usr/local/opt/openssl/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+alias clr="celery worker -E -A liox_on_demand -B -l INFO"
+alias runserver="./manage.py runserver"
+alias pshell="pipenv shell"
