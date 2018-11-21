@@ -1,0 +1,8 @@
+alias clr="celery worker -E -A liox_on_demand -B -l INFO"
+alias runserver="./manage.py runserver"
+alias pshell="pipenv shell"
+alias ce='clear; celery purge -f; clear; ./manage.py celeryd -v 2 -B -s celery -E -l INFO'
+# Upgrade/update system
+alias ltest='./manage.py test --settings=liox_on_demand.testing-settings'
+alias ltrans="java -jar liox-content-cli.jar"
+
