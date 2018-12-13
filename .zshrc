@@ -1,5 +1,4 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/seanb/.oh-my-zsh"
@@ -101,9 +100,9 @@ export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/mysql@5.7/bin/usr/local/opt/openssl/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/openssl/lib"
-export export CPPFLAGS="-I/usr/local/opt/openssl/include"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -112,3 +111,5 @@ if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
 
+ssh-add -K ~/.ssh/id_rsa
+ssh-add -K ~/.ssh/id_rsa_github
