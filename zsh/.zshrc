@@ -101,7 +101,7 @@ export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/Users/seanb/Library/Python/2.7/bin:/usr/local/opt/openssl/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/openssl/lib"
 export export CPPFLAGS="-I/usr/local/opt/openssl/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
@@ -113,3 +113,5 @@ if [ -f ~/.zsh_aliases ]; then
 fi
 
 
+ssh-add -K ~/.ssh/id_rsa_github
+ssh-add -K ~/.ssh/id_rsa_github
