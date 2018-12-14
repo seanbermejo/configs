@@ -482,6 +482,14 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-pretty-docs nil))
 
+(defun dotspacemacs/user-env ()
+  "Environment variables setup.
+This function defines the environment variables for your Emacs session. By
+default it calls `spacemacs/load-spacemacs-env' which loads the environment
+variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
+See the header of this file for more information."
+  (spacemacs/load-spacemacs-env))
+
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
 This function is called immediately after `dotspacemacs/init', before layer
@@ -497,6 +505,14 @@ in the dump."
   )
 
 (defun dotspacemacs/user-config ()
+  ;;; scroll one line at a time (less "jumpy" than defaults)
+  (setq mouse-wheel-scroll-amount '(2 ((shift) . 1))) ;; two lines at a time
+  (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+  (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+  ;; Enable mouse support
+  (unless window-system
+    (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
+    (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
   (setq ns-use-srgb-colorspace nil)
   (require 'multiple-cursors)
   (require 'evil-mc)
@@ -522,13 +538,10 @@ in the dump."
   (lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'web-mode-hook
   (lambda () (modify-syntax-entry ?_ "w")))
+  (if (load "mwheel" t)
+      (mwheel-install))
   ;; Remap expanding of snippet
   (evil-define-key 'insert global-map (kbd "C-y") 'yas-expand)
-  (if (featurep 'ns)
-      (progn
-        (global-set-key (kbd "<mouse-4>") (kbd "<wheel-up>"))
-        (global-set-key (kbd "<mouse-5>") (kbd "<wheel-down>"))))
-  ;; Set default column view headings: Task Total-Time Time-Stamp
   (setq org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA")
   ;; always follow the symlink (and edit the "actual" file directly)
   (setq vc-follow-symlinks t)
