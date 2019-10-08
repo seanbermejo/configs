@@ -96,17 +96,18 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export PATH=/usr/local/mysql/bin:$PATH
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export PATH="/Users/seanb/Library/Python/2.7/bin:/usr/local/opt/openssl/bin:$PATH"
+export PATH=/Users/seanb/Library/Python/2.7/bin:/usr/local/opt/openssl/bin:/Users/seanb/projects/flutter/bin:$PATH
 export LDFLAGS="-L/usr/local/opt/openssl/lib"
 export export CPPFLAGS="-I/usr/local/opt/openssl/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export GOPATH=$HOME/go
 
 if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
@@ -114,4 +115,12 @@ fi
 
 
 ssh-add -K ~/.ssh/id_rsa_github
-ssh-add -K ~/.ssh/id_rsa_github
+ssh-add -K ~/.ssh/id_rsa
+
+export NVM_DIR="/Users/seanb/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+export PATH=/usr/local/opt/ffmpeg@2.8/bin:$PATH
+export PATH=$PATH:/usr/local/sbin
+export WORKON_HOME="/Users/seanb/.local/share/virtualenvs/"
+alias libreoffice="soffice"
+export ANSIBLE_VAULT_PASSWORD_FILE=/Users/seanb/.ansible-password
