@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/Users/seanb/Library/Python/3.7/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/seanb/.oh-my-zsh"
@@ -101,10 +102,10 @@ export PATH=/usr/local/mysql/bin:$PATH
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export PATH=/Users/seanb/Library/Python/2.7/bin:/usr/local/opt/openssl/bin:/Users/seanb/projects/flutter/bin:$PATH
-export LDFLAGS="-L/usr/local/opt/openssl/lib"
-export export CPPFLAGS="-I/usr/local/opt/openssl/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
+export PATH=/usr/local/opt/openssl@1.1/bin:/Users/seanb/projects/flutter/bin:/Users/seanb/.nvm/versions/node/v10.15.0/bin:$PATH
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export GOPATH=$HOME/go
@@ -120,7 +121,9 @@ ssh-add -K ~/.ssh/id_rsa
 export NVM_DIR="/Users/seanb/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 export PATH=/usr/local/opt/ffmpeg@2.8/bin:$PATH
-export PATH=$PATH:/usr/local/sbin
 export WORKON_HOME="/Users/seanb/.local/share/virtualenvs/"
 alias libreoffice="soffice"
 export ANSIBLE_VAULT_PASSWORD_FILE=/Users/seanb/.ansible-password
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
