@@ -84,6 +84,7 @@ This function should only modify configuration layer settings."
      (spell-checking :variables spell-checking-enable-by-default nil)
      (syntax-checking :variables syntax-checking-enable-tooltips nil)
      (version-control :variables version-control-global-margin t)
+     (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
      )
 
    ;; List of additional packages that will be installed without being
