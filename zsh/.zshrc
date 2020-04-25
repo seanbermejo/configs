@@ -101,11 +101,32 @@ export PATH=/usr/local/mysql/bin:$PATH
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+declare -a ldflags=(
+    "-L/usr/local/opt/openssl@1.1/lib"
+    "-L/usr/local/opt/libffi/lib"
+)
+declare -a cppflags=(
+    "-I/usr/local/opt/openssl@1.1/include"
+    "-I/usr/local/opt/libffi/include"
+)
+declare -a pkgpath=(
+    "/usr/local/opt/openssl@1.1/lib/pkgconfig"
+    "/usr/local/opt/libffi/lib/pkgconfig"
+)
+for flag in "${ldflags[@]}"
+do
+    export LDFLAGS=$flag:$LDFLAGS
+done
+for flag in "${cppflags[@]}"
+do
+    export CPPFLAGS=$flag:$CPPFLAGS
+done
+for flag in "${pkgpath[@]}"
+do
+    export PKG_CONFIG_PATH=$flag:$PKG_CONFIG_PATH
+done
 
 export PATH=/usr/local/opt/openssl@1.1/bin:/Users/seanb/projects/flutter/bin:/Users/seanb/.nvm/versions/node/v10.15.0/bin:$PATH
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export GOPATH=$HOME/go
