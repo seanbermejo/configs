@@ -69,7 +69,7 @@ This function should only modify configuration layer settings."
                       auto-completion-complete-with-key-sequence (kbd "jk"))
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      (python :variables
-             ;; python-backend 'lsp
+             python-backend 'lsp
              python-formatter 'black
              python-format-on-save t
              python-sort-imports-on-save t
