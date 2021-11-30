@@ -35,6 +35,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(rust
      typescript
+     vue
      ruby
      go
      php
@@ -49,6 +50,7 @@ This function should only modify configuration layer settings."
      neotree
      git
      github
+     slack
      helm
      html
      javascript
@@ -86,6 +88,7 @@ This function should only modify configuration layer settings."
      (syntax-checking :variables syntax-checking-enable-tooltips nil)
      (version-control :variables version-control-global-margin t)
      (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
+     (xclipboard :variables xclipboard-enable-cliphist t)
      )
 
    ;; List of additional packages that will be installed without being
@@ -455,7 +458,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("rg", "ag" "pt" "ack" "grep")
    ;; dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
 
    ;; Format specification for setting the frame title.
@@ -520,7 +523,9 @@ in the dump."
   )
 
 (defun dotspacemacs/user-config ()
-  (require 'prettier-js)
+  (evil-leader/set-key
+     "q q" 'spacemacs/frame-killer)
+  ;; (require 'prettier-js)
   (setq neo-theme 'nerd)
   (setq-default typescript-indent-level 2)
   ;;; scroll one line at a time (less "jumpy" than defaults)
@@ -550,7 +555,7 @@ in the dump."
     (if (buffer-file-name)
         (if (string-match (car my-pair) buffer-file-name)
             (funcall (cdr my-pair)))))
-  (add-hook 'js2-mode-hook 'prettier-js-mode)
+  ;; (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook #'(lambda ()
                                (enable-minor-mode
                                 '("\\.jsx?\\'" . prettier-js-mode))))
@@ -598,7 +603,7 @@ in the dump."
     ("fe666e5ac37c2dfcf80074e88b9252c71a22b6f5d2f566df9a7aa4f9bea55ef8" default)))
  '(package-selected-packages
    (quote
-    (django-mode vue-mode prettier-js paradox goto-chg ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline smartparens restart-emacs request rainbow-delimiters popwin persp-mode pcre2el org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-unimpaired evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-escape eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line))))
+    (yapfify yaml-mode xterm-color web-mode web-beautify vmd-mode vimrc-mode unfill toml-mode tide typescript-mode tagedit systemd sql-indent spotify powerline smeargle slim-mode slack emojify circe oauth2 shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rjsx-mode reveal-in-osx-finder restclient-helm rbenv rake racer pyvenv pytest pyenv-mode py-isort pug-mode pony-mode pip-requirements phpunit phpcbf php-extras php-auto-yasnippets pbcopy spinner osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro org-mime org-download ob-restclient ob-http nginx-mode mwim multi-term mmm-mode minitest markdown-toc magit-gitflow magit-popup magit-gh-pulls livid-mode skewer-mode simple-httpd live-py-mode launchctl js2-refactor multiple-cursors js2-mode js-doc jinja2-mode lv hy-mode dash-functional htmlize parent-mode helm-spotify-plus multi helm-pydoc projectile helm-gitignore helm-css-scss helm-company helm-c-yasnippet haml-mode go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-rust flycheck-pos-tip pos-tip flycheck pkg-info epl flx evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-snipe highlight evil-mc evil-matchit evil-magit magit git-commit with-editor evil-lisp-state evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu evil undo-tree eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode drupal-mode php-mode doom-themes dockerfile-mode docker transient tablist json-mode docker-tramp json-snatcher json-reformat diff-hl dactyl-mode cython-mode company-web web-completion-data company-statistics company-restclient restclient know-your-http-well company-go go-mode company-ansible company-anaconda company coffee-mode chruby cargo markdown-mode rust-mode bundler inf-ruby bind-key auto-yasnippet yasnippet auto-dictionary packed atomic-chrome websocket ansible-doc ansible anaconda-mode pythonic f dash s alert log4e gntp adaptive-wrap helm avy helm-core async ac-ispell auto-complete popup django-mode vue-mode prettier-js paradox goto-chg ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline smartparens restart-emacs request rainbow-delimiters popwin persp-mode pcre2el org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-unimpaired evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-escape eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -615,9 +620,11 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#080808" "#d70000" "#67b11d" "#875f00" "#268bd2" "#af00df" "#00ffff" "#b2b2b2"])
  '(custom-safe-themes
    (quote
-    ("d74c5485d42ca4b7f3092e50db687600d0e16006d8fa335c69cf4f379dbd0eee" "e1ef2d5b8091f4953fe17b4ca3dd143d476c106e221d92ded38614266cea3c8b" "51956e440cec75ba7e4cff6c79f4f8c884a50b220e78e5e05145386f5b381f7b" "361f5a2bc2a7d7387b442b2570b0ef35198442b38c2812bf3c70e1e091771d1a" "615123f602c56139c8170c153208406bf467804785007cdc11ba73d18c3a248b" "1ed5c8b7478d505a358f578c00b58b430dde379b856fbcb60ed8d345fc95594e" "e074be1c799b509f52870ee596a5977b519f6d269455b84ed998666cf6fc802a" "76bfa9318742342233d8b0b42e824130b3a50dcc732866ff8e47366aed69de11" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "1526aeed166165811eefd9a6f9176061ec3d121ba39500af2048073bea80911e" "a83f05e5e2f2538376ea2bfdf9e3cd8b7f7593b16299238c1134c1529503fa88" "fe666e5ac37c2dfcf80074e88b9252c71a22b6f5d2f566df9a7aa4f9bea55ef8" default)))
+    ("fe666e5ac37c2dfcf80074e88b9252c71a22b6f5d2f566df9a7aa4f9bea55ef8" default)))
  '(evil-want-Y-yank-to-eol nil)
  '(hl-todo-keyword-faces
    (quote
@@ -638,10 +645,12 @@ This function is called at the very end of Spacemacs initialization."
      ("\\?\\?\\?+" . "#dc752f"))))
  '(package-selected-packages
    (quote
-    (ts let-alist django-mode vue-mode prettier-js paradox goto-chg ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline smartparens restart-emacs request rainbow-delimiters popwin persp-mode pcre2el org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-unimpaired evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-escape eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line)))
+    (tern yapfify yaml-mode xterm-color web-mode web-beautify vmd-mode vimrc-mode unfill toml-mode tide typescript-mode tagedit systemd sql-indent spotify powerline smeargle slim-mode slack emojify circe oauth2 shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rjsx-mode reveal-in-osx-finder restclient-helm rbenv rake racer pyvenv pytest pyenv-mode py-isort pug-mode pony-mode pip-requirements phpunit phpcbf php-extras php-auto-yasnippets pbcopy spinner osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro org-mime org-download ob-restclient ob-http nginx-mode mwim multi-term mmm-mode minitest markdown-toc magit-gitflow magit-popup magit-gh-pulls livid-mode skewer-mode simple-httpd live-py-mode launchctl js2-refactor multiple-cursors js2-mode js-doc jinja2-mode lv hy-mode dash-functional htmlize parent-mode helm-spotify-plus multi helm-pydoc projectile helm-gitignore helm-css-scss helm-company helm-c-yasnippet haml-mode go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-rust flycheck-pos-tip pos-tip flycheck pkg-info epl flx evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-snipe highlight evil-mc evil-matchit evil-magit magit git-commit with-editor evil-lisp-state evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu evil undo-tree eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode drupal-mode php-mode doom-themes dockerfile-mode docker transient tablist json-mode docker-tramp json-snatcher json-reformat diff-hl dactyl-mode cython-mode company-web web-completion-data company-statistics company-restclient restclient know-your-http-well company-go go-mode company-ansible company-anaconda company coffee-mode chruby cargo markdown-mode rust-mode bundler inf-ruby bind-key auto-yasnippet yasnippet auto-dictionary packed atomic-chrome websocket ansible-doc ansible anaconda-mode pythonic f dash s alert log4e gntp adaptive-wrap helm avy helm-core async ac-ispell auto-complete popup django-mode vue-mode prettier-js paradox goto-chg ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline smartparens restart-emacs request rainbow-delimiters popwin persp-mode pcre2el org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-unimpaired evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-escape eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line)))
+ '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#262626")))
  '(safe-local-variable-values
    (quote
-    ((eval add-hook
+    ((python-sort-imports-on-save t)
+     (eval add-hook
            (quote before-save-hook)
            (function py-isort-buffer)
            nil t)

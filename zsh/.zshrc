@@ -126,7 +126,7 @@ do
     export PKG_CONFIG_PATH=$flag:$PKG_CONFIG_PATH
 done
 
-export PATH=/usr/local/opt/openssl@1.1/bin:/Users/seanb/projects/flutter/bin:/Users/seanb/.nvm/versions/node/v10.15.0/bin:$PATH
+export PATH=/usr/local/opt/openssl@1.1/bin:/Users/seanb/projects/flutter/bin:/Users/seanb/.nvm/versions/node/v10.15.0/bin:$HOME/.cargo/bin:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export GOPATH=$HOME/go
