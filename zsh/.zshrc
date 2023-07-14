@@ -126,7 +126,7 @@ do
     export PKG_CONFIG_PATH=$flag:$PKG_CONFIG_PATH
 done
 
-export PATH=/usr/local/opt/openssl@1.1/bin:/Users/seanb/projects/flutter/bin:/Users/seanb/.nvm/versions/node/v10.15.0/bin:$HOME/.cargo/bin:$PATH
+export PATH=/usr/local/opt/openssl@1.1/bin:/Users/seanb/projects/flutter/bin:/Users/seanb/.nvm/versions/node/v10.15.0/bin:$HOME/.cargo/bin:$PATH:$HOME/.emacs.d/bin
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export GOPATH=$HOME/go
@@ -142,7 +142,7 @@ ssh-add -K ~/.ssh/id_rsa
 export NVM_DIR="/Users/seanb/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 export PATH=/usr/local/opt/ffmpeg@2.8/bin:$PATH
-export WORKON_HOME="/Users/seanb/.local/share/virtualenvs/"
+export WORKON_HOME="${HOME}/Library/Caches/pypoetry/virtualenvs/"
 alias libreoffice="soffice"
 export ANSIBLE_VAULT_PASSWORD_FILE=/Users/seanb/.ansible-password
 if command -v pyenv 1>/dev/null 2>&1; then
